@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _a, _b;
 exports.__esModule = true;
-require("regenerator-runtime/runtime");
+// require("regenerator-runtime/runtime");
 var colors = ['blue', 'green', 'yellow', 'red'];
 var sequence = [];
 var clickedSequence = [];
