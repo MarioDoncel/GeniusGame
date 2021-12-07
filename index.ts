@@ -77,5 +77,6 @@ async function checkSequence() {
 function gameOver() {
     clickedSequence.length = 0
     sequence.length = 0
+    genius.removeEventListener('click',clickColor)
 }
 
