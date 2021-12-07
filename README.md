@@ -149,7 +149,7 @@ Project Link: [https://github.com/MarioDoncel/GeniusGame](https://github.com/Mar
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* [DIGITAL INNOVATION ONDE](https://web.dio.me/)
+* [DIGITAL INNOVATION ONE](https://web.dio.me/)
 * [EDUZZ](https://www.eduzz.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
