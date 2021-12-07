@@ -17,7 +17,7 @@ const newRandomColor: VoidFunction = () => {
 
 async function startGame(){
     newRandomColor()
-    alert('Vamos começar, bom jogo!')
+    alert('Vamos começar, bom jogo!') 
     await lightSequence(sequence)
     genius.addEventListener('click', clickColor)
 }
