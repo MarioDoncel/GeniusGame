@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _a, _b;
+var _a, _b, _c;
 // exports.__esModule = true;
 // require("regenerator-runtime/runtime");
 var colors = ['blue', 'green', 'yellow', 'red'];
@@ -44,6 +44,24 @@ var clickedSequence = [];
 var genius = document.querySelector('.genius');
 (_a = document.querySelector('button[start]')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', startGame);
 (_b = document.querySelector('button[gameover]')) === null || _b === void 0 ? void 0 : _b.addEventListener('click', gameOver);
+(_c = document.querySelectorAll('button')) === null || _c === void 0 ? void 0 : _c.forEach(function (btn) {
+    btn.addEventListener('click', function (e) { return __awaiter(void 0, void 0, void 0, function () {
+        var buttonClicked, delayPromise;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    buttonClicked = e.target;
+                    buttonClicked.classList.add('clicked');
+                    delayPromise = new Promise(function (res, rej) { setTimeout(res, 300); });
+                    return [4 /*yield*/, delayPromise];
+                case 1:
+                    _a.sent();
+                    buttonClicked.classList.remove('clicked');
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+});
 var newRandomColor = function () {
     var randomColor = colors[Math.floor(Math.random() * 4)];
     sequence.push(randomColor);

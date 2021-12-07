@@ -11,6 +11,13 @@ body{
     justify-content: center;
     align-items: center;
 }
+h1{
+    background-color: rgb(40, 64, 80);
+    width: 100vw;
+    text-align: center;
+    padding: 14px 0;
+    color: white;
+}
 .genius{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -21,32 +28,61 @@ body{
     width: 700px;
     height: 700px;
     overflow: hidden;
+    padding: 10px;
 }
 .green, .blue,.red,.yellow{
     filter: brightness(50%);
     transition: 400ms ease-in-out;
     border-radius: 6px;
+    cursor: pointer; 
 }
 
 
 .green{
     background-color: green;
     box-shadow: -4px -4px 8px -4px rgba(0, 0, 0, 0.7);
+    border-radius: 6px 6px 100% 6px;
 }
 .blue{
     background-color: rgb(46, 43, 236);
     box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.7);
+    border-radius: 100% 6px 6px 6px;
 }
 .red{
     background-color: red;
     box-shadow: 4px -4px 8px -4px rgba(0, 0, 0, 0.7);
+    border-radius:6px 6px 6px 100% ;
 }
 .yellow{
     background-color: yellow;
     box-shadow: -4px 4px 8px -4px rgba(0, 0, 0, 0.7);
+    border-radius:6px 100% 6px 6px  ;
 }
 
 .selected {
     filter:  brightness(100%);
+    transform: scale(0.98);
     box-shadow: initial;
+}
+
+button {
+    padding: 6px 12px;
+    border-radius: 4px;
+    background-color: rgb(40, 64, 80);
+    border: none;
+    color: white;
+    font-size: 24px;
+    margin: 16px;
+    cursor: pointer;
+    transition: 300ms;
+}
+
+button.clicked{
+    animation: click 600ms ease-out;
+}
+
+@keyframes click {
+    0%{ transform: scale(1)}
+    50%{ transform: scale(0.9)}
+    100%{ transform: scale(1)}
 }

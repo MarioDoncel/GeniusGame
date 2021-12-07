@@ -6,6 +6,15 @@ const clickedSequence:string[] = []
 const genius = document.querySelector('.genius') as HTMLDivElement
 document.querySelector('button[start]')?.addEventListener('click', startGame)
 document.querySelector('button[gameover]')?.addEventListener('click', gameOver)
+document.querySelectorAll('button')?.forEach(btn => {
+    btn.addEventListener('click', async (e:any) => {
+        const buttonClicked:HTMLButtonElement = e.target
+        buttonClicked.classList.add('clicked')
+        const delayPromise = new Promise<void>((res,rej)=>{setTimeout(res, 300);})
+        await delayPromise
+        buttonClicked.classList.remove('clicked')
+    })
+})
 
 
 
