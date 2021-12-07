@@ -2,18 +2,20 @@
   "name": "typescript",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "tsc"
+    "build": "parcel build index.html",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/jquery": "^3.5.9",
-    "parcel-bundler": "^1.12.5",
+    "gh-pages": "^3.2.3",
+    "parcel": "^2.0.1",
     "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "regenerator-runtime": "^0.13.9"
   }
 }
