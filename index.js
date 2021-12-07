@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _a, _b;
 exports.__esModule = true;
-// require("regenerator-runtime/runtime");
+require("regenerator-runtime/runtime");
 var colors = ['blue', 'green', 'yellow', 'red'];
 var sequence = [];
 var clickedSequence = [];
@@ -96,24 +96,23 @@ function lightSequence(sequence) {
                     _i = 0, sequence_1 = sequence;
                     _a.label = 1;
                 case 1:
-                    if (!(_i < sequence_1.length)) return [3 /*break*/, 5];
+                    if (!(_i < sequence_1.length)) return [3 /*break*/, 6];
                     color = sequence_1[_i];
-                    return [4 /*yield*/, lightColor(color)];
+                    delayPromise = new Promise(function (res, rej) { setTimeout(res, 500); });
+                    return [4 /*yield*/, delayPromise];
                 case 2:
                     _a.sent();
-                    delayPromise = new Promise(function (res, rej) {
-                        setTimeout(function () {
-                            res();
-                        }, 500);
-                    });
-                    return [4 /*yield*/, delayPromise];
+                    return [4 /*yield*/, lightColor(color)];
                 case 3:
                     _a.sent();
-                    _a.label = 4;
+                    return [4 /*yield*/, delayPromise];
                 case 4:
+                    _a.sent();
+                    _a.label = 5;
+                case 5:
                     _i++;
                     return [3 /*break*/, 1];
-                case 5: return [2 /*return*/];
+                case 6: return [2 /*return*/];
             }
         });
     });
@@ -143,19 +142,24 @@ function clickColor(event) {
 }
 function checkSequence() {
     return __awaiter(this, void 0, void 0, function () {
+        var delayPromise;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    if (!(JSON.stringify(sequence) == JSON.stringify(clickedSequence))) return [3 /*break*/, 2];
+                    if (!(JSON.stringify(sequence) == JSON.stringify(clickedSequence))) return [3 /*break*/, 3];
                     clickedSequence.length = 0;
                     alert('Parabens, você acertou. Vamos para o próximo nivel!');
                     newRandomColor();
-                    return [4 /*yield*/, lightSequence(sequence)];
+                    delayPromise = new Promise(function (res, rej) { setTimeout(res, 500); });
+                    return [4 /*yield*/, delayPromise];
                 case 1:
+                    _a.sent();
+                    return [4 /*yield*/, lightSequence(sequence)];
+                case 2:
                     _a.sent();
                     genius.addEventListener('click', clickColor);
                     return [2 /*return*/];
-                case 2:
+                case 3:
                     alert("Infelizmente voc\u00EA errou! Game Over! \n     Pontua\u00E7\u00E3o ".concat(sequence.length - 1));
                     return [2 /*return*/, gameOver()];
             }
@@ -165,4 +169,5 @@ function checkSequence() {
 function gameOver() {
     clickedSequence.length = 0;
     sequence.length = 0;
+    genius.removeEventListener('click', clickColor);
 }

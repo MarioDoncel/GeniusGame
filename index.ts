@@ -37,12 +37,9 @@ async function lightColor(color:string){
 
 async function lightSequence(sequence:string[]) {
     for (const color of sequence) {
+        const delayPromise = new Promise<void>((res,rej)=>{setTimeout(res, 500);})
+        await delayPromise
         await lightColor(color)
-        const delayPromise = new Promise<void>((res,rej)=>{
-            setTimeout(() => {
-                res()
-            }, 500);
-        })
         await delayPromise
     }
 }
@@ -65,6 +62,8 @@ async function checkSequence() {
         clickedSequence.length = 0
         alert('Parabens, você acertou. Vamos para o próximo nivel!')
         newRandomColor()
+        const delayPromise = new Promise<void>((res,rej)=>{setTimeout(res, 500);})
+        await delayPromise
         await lightSequence(sequence)
         genius.addEventListener('click', clickColor)
         return
