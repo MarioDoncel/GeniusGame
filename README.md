@@ -49,7 +49,7 @@ Project developed at the "<a href="https://web.dio.me/">Digital Innovation One</
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-Simple game Genius made just to accomplish a task on bootcamp. I took a different coding strategy from the intructor and also took the opportunity to practice the basics of 
+Simple game Genius made to accomplish a task on bootcamp. I took a different coding strategy from the intructor and also took the opportunity to practice the basics of 
 Typescript.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
