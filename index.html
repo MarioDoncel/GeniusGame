@@ -4,25 +4,77 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Press+Start+2P&family=Russo+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>DIO Typescript</title>
 </head>
 <body>
     <div class="main-game">
-        <h1>GENIUS GAME</h1>
         <div class="genius">
             <div colorPicker class="blue"></div>
             <div colorPicker class="yellow"></div>
             <div colorPicker class="red"></div>
             <div colorPicker class="green"></div>
-        </div>
-        <div class="buttons">
-            <button start >Start</button>
-            <button gameover >Stop</button>
+            <div class="inner-circle">
+                <div class="game-name">
+                    <h1>GENIUS</h1>
+                </div>
+                <div class="controls">
+                    <div class="count-start-speed">
+                        <div class="count">
+                            <div class="scoreboard">
+                                <h2></h2>
+                            </div>
+                            <span>COUNT</span>
+                        </div>
+                        <div class="start-button">
+                            <div class="button">
+                                <button start type="button"></button>
+                            </div>
+                            <span>START</span>    
+                        </div>
+                        <div class="speed-control">
+                            <div class="speed-buttons">
+                                <div class="button">
+                                    <div class="speed-button">
+                                        <button class="active" type="button" onclick=setSpeed(event,1000)></button>
+                                    </div>
+                                    <span>1</span>   
+                                </div>
+                                <div class="button">
+                                    <div class="speed-button">
+                                        <button type="button" onclick=setSpeed(event,500)></button>
+                                    </div>
+                                    <span>2</span>   
+                                </div>
+                                <div class="button">
+                                    <div class="speed-button">
+                                        <button type="button" onclick=setSpeed(event,350)></button>
+                                    </div>
+                                    <span>3</span>   
+                                </div>
+                                   
+                            </div>
+                            <span>SPEED</span>
+                        </div>
+                    </div>
+                    <div class="turn-control">
+                        <div class="on-off " onclick=gameOnOff(event)>
+                            <div class="selector "></div>
+                            
+                        </div>
+                        <div class="spans">
+                            <span>OFF</span>
+                            <span>ON</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
         </div>
     </div>
-    
-    
     <script  src="./index.js"></script>
 </body>
 </html>

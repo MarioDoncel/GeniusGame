@@ -1,6 +1,30 @@
+:root{
+    --device-background: rgb(49, 48, 48);
+    --button-red: rgb(220, 20, 20);
+    --button-blue: rgb(7, 141, 230);
+    --black: #000;
+    --white: #fff;
+    --metal-gradient: linear-gradient( to bottom, #bcc6cc, #eee, #bcc6cc);
+
+    /* Establishing 'rem' in 10px - To use all font-sizes responsives */
+     font-size: 62.5%; 
+
+}
+   
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    text-decoration: none;
+    list-style-type: none;
+    box-sizing: border-box;
+    outline: none;
+    font-family: 'Russo One', sans-serif;
+}
+
 body{
     margin: 0;
-    background-color: rgb(156, 196, 228);
+    background-color: rgb(255, 245, 245);
 }
 
 .main-game {
@@ -11,78 +35,260 @@ body{
     justify-content: center;
     align-items: center;
 }
-h1{
-    background-color: rgb(40, 64, 80);
-    width: 100vw;
-    text-align: center;
-    padding: 14px 0;
-    color: white;
-}
+
 .genius{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
-    border: 1px solid #fff;
-    background-color: white;
+    grid-gap: 15px;
+    
+    background-color: var(--device-background);
     border-radius: 100%;
-    width: 700px;
-    height: 700px;
+    width: clamp(300px,80vw,700px);
+    height: clamp(300px,80vw,700px);
     overflow: hidden;
-    padding: 10px;
-}
-.green, .blue,.red,.yellow{
-    filter: brightness(50%);
-    transition: 400ms ease-in-out;
-    border-radius: 6px;
-    cursor: pointer; 
+    padding: 15px;
+    position: relative;
 }
 
+.inner-circle{
+    background:var(--metal-gradient);
+
+    width: clamp(150px,40vw,350px);
+    height: clamp(150px,40vw,350px);
+
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    
+    border-radius: 100%;
+    border: 15px solid var(--device-background);
+    outline: 5px solid var(--white);
+    outline-offset: -20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow: hidden;
+}
+.game-name {
+    font-family: 'Press Start 2P', cursive;
+    background-color: var(--black);
+    height: 40%;
+    width: 100%;
+    text-align: center;
+    vertical-align: bottom;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-size: 2.5rem;
+}
+.game-name > h1{
+    margin-bottom: 1rem;
+    color: white;
+}
+.controls{
+    margin-top: 6px;
+    width: 100%;
+    border-top: 2px solid var(--black);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.controls span{
+    margin-top: 3px;
+    font-size: 0.8rem;
+    font-weight: lighter;
+   
+}
+.count-start-speed{
+    display: flex;
+    justify-content: center;
+    padding-top: 6px;
+    gap: clamp(5px, 1vw, 20px);
+   
+}
+.count-start-speed > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.scoreboard{
+    width: clamp(25px, 5vw, 46px);
+    height: clamp(25px, 5vw, 46px);
+    background-color: rgb(51, 21, 21);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+.scoreboard h2{
+    color: var(--button-red);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.6rem;
+}
+
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(25px, 5vw, 46px);
+    height: clamp(25px, 5vw, 46px);
+}
+.count-start-speed button{
+    width: clamp(10px, 1.7vw, 15px);
+    height: clamp(10px, 1.7vw, 15px);
+    border-radius: 100%;
+    border: solid 2px rgb(34, 34, 34);
+    cursor: pointer;
+}
+.start-button button {
+    background-color: var(--button-red);
+}
+.count-start-speed .speed-buttons{
+    display: flex;
+    flex-direction: row;
+}
+.speed-buttons .button {
+    flex-direction: column;
+    width: clamp(15px, 3vw, 23px);
+    height: clamp(25px, 5vw, 46px);
+}
+.speed-buttons button {
+    background-color: var(--button-blue);
+}
+.speed-buttons button.active {
+    transform: scale(0.9);
+    border: solid 4px var(--device-background);
+}
+
+.on-off{
+    background-color: rgb(34, 34, 34);
+    width: clamp(20px, 6vw, 80px);;
+    height: clamp(10px, 3vw, 30px);;
+    position: relative;
+    transition: 300ms ease-in;
+    cursor: pointer;
+}
+.on-off.game-on{
+    background-color: var(--black);
+}
+.on-off .selector{
+    height: 100%;
+    width: 25%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--button-red);
+    transition: 300ms ease-in;
+}
+.on-off .selector.game-on{
+    left: initial;
+    right: 0;
+}
+.turn-control .spans {
+    display: flex;
+    justify-content: space-between;
+}
+
+.green, .blue,.red,.yellow{
+    filter: brightness(90%);
+    transition: 300ms ease-in-out;
+    cursor: pointer; 
+}
 
 .green{
     background-color: green;
     box-shadow: -4px -4px 8px -4px rgba(0, 0, 0, 0.7);
-    border-radius: 6px 6px 100% 6px;
+    border-radius: 0px 0px 100% 0px;
 }
+
 .blue{
     background-color: rgb(46, 43, 236);
     box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.7);
-    border-radius: 100% 6px 6px 6px;
+    border-radius: 100% 0px 0 0;
 }
+
 .red{
     background-color: red;
     box-shadow: 4px -4px 8px -4px rgba(0, 0, 0, 0.7);
-    border-radius:6px 6px 6px 100% ;
+    border-radius:0 0 0 100% ;
 }
+
 .yellow{
     background-color: yellow;
     box-shadow: -4px 4px 8px -4px rgba(0, 0, 0, 0.7);
-    border-radius:6px 100% 6px 6px  ;
+    border-radius:0 100% 0 0  ;
 }
 
+
 .selected {
-    filter:  brightness(100%);
-    transform: scale(0.98);
+    filter: brightness(200%);
+    transform: scale(0.95);
     box-shadow: initial;
 }
 
-button {
-    padding: 6px 12px;
-    border-radius: 4px;
-    background-color: rgb(40, 64, 80);
-    border: none;
-    color: white;
-    font-size: 24px;
-    margin: 16px;
-    cursor: pointer;
-    transition: 300ms;
-}
 
 button.clicked{
     animation: click 600ms ease-out;
 }
 
 @keyframes click {
-    0%{ transform: scale(1)}
-    50%{ transform: scale(0.9)}
-    100%{ transform: scale(1)}
+    0%{ 
+        transform: scale(1);
+        border: solid 1px rgb(34, 34, 34);
+    }
+    50%{ 
+        transform: scale(0.9);
+        border: solid 4px rgb(34, 34, 34);
+    }
+    100%{ 
+        transform: scale(1);
+        border: solid 1px rgb(34, 34, 34);
+    }
+}
+
+@media (max-width:750px) {
+    :root{
+        font-size: 9px;
+    }
+    .game-name > h1 {
+        font-size: 2rem;
+    }
+    .scoreboard h2{
+        font-size: 1.2rem;
+    }
+
+    .scoreboard,.speed-buttons .button,.button{
+        height: clamp(10px, 5vw, 46px);
+    }
+
+    
+    
+   
+}
+@media (max-width:500px){
+    .genius{
+        grid-gap:8px;
+        padding: 8px;
+    }
+    .inner-circle{
+        outline: none;
+        border: 8px solid var(--device-background);
+    }
+    .count-start-speed{
+        gap: clamp(2px, 0vw, 20px);
+    }
+    .on-off{
+        width: clamp(30px, 6vw, 80px);
+        height: clamp(10px, 1vw, 30px);
+    }
 }

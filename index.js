@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,102 +34,141 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _a, _b, _c;
-// exports.__esModule = true;
-// require("regenerator-runtime/runtime");
-var colors = ['blue', 'green', 'yellow', 'red'];
+var _this = this;
+var colors = ['blue', 'yellow', 'green', 'red'];
 var sequence = [];
 var clickedSequence = [];
+var sounds = {
+    blue: new Audio("audio/blue.mp3"),
+    green: new Audio("audio/green.mp3"),
+    red: new Audio("audio/red.mp3"),
+    yellow: new Audio("audio/yellow.mp3"),
+    wrong: new Audio("audio/wrong.wav"),
+    correct: new Audio("audio/correct.mp3")
+};
+var _configurations = {
+    speed: 1000,
+    gameOn: false
+};
 var genius = document.querySelector('.genius');
-(_a = document.querySelector('button[start]')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', startGame);
-(_b = document.querySelector('button[gameover]')) === null || _b === void 0 ? void 0 : _b.addEventListener('click', gameOver);
-(_c = document.querySelectorAll('button')) === null || _c === void 0 ? void 0 : _c.forEach(function (btn) {
-    btn.addEventListener('click', function (e) { return __awaiter(void 0, void 0, void 0, function () {
-        var buttonClicked, delayPromise;
+var startButton = document.querySelector('button[start]');
+var score = document.querySelector('.scoreboard h2');
+function flashScore() {
+    return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    buttonClicked = e.target;
-                    buttonClicked.classList.add('clicked');
-                    delayPromise = new Promise(function (res, rej) { setTimeout(res, 300); });
-                    return [4 /*yield*/, delayPromise];
+                case 0: return [4 /*yield*/, delayPromise(100)];
                 case 1:
                     _a.sent();
-                    buttonClicked.classList.remove('clicked');
+                    score.style.display = 'none';
+                    return [4 /*yield*/, delayPromise(100)];
+                case 2:
+                    _a.sent();
+                    score.style.display = 'initial';
                     return [2 /*return*/];
             }
         });
-    }); });
-});
-var newRandomColor = function () {
-    var randomColor = colors[Math.floor(Math.random() * 4)];
-    sequence.push(randomColor);
-};
+    });
+}
+function clickAnimation(event) {
+    return __awaiter(this, void 0, void 0, function () {
+        var startButton, delayPromise;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    startButton = event.target;
+                    startButton.classList.add('clicked');
+                    delayPromise = new Promise(function (res) { setTimeout(res, 600); });
+                    return [4 /*yield*/, delayPromise];
+                case 1:
+                    _a.sent();
+                    startButton.classList.remove('clicked');
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+var delayPromise = function (ms) { return new Promise(function (res, rej) { setTimeout(res, ms); }); };
+startButton.addEventListener('click', startGame);
+startButton.addEventListener('click', clickAnimation);
+var newRandomColor = function () { return __awaiter(_this, void 0, void 0, function () {
+    var randomColor;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                randomColor = colors[Math.floor(Math.random() * 4)];
+                sequence.push(randomColor);
+                return [4 /*yield*/, delayPromise(500)];
+            case 1:
+                _a.sent();
+                return [4 /*yield*/, lightSequence(sequence)];
+            case 2:
+                _a.sent();
+                genius.addEventListener('click', clickColor);
+                return [2 /*return*/];
+        }
+    });
+}); };
 function startGame() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    newRandomColor();
-                    alert('Vamos começar, bom jogo!');
-                    return [4 /*yield*/, lightSequence(sequence)];
+                    if (!_configurations.gameOn)
+                        return [2 /*return*/];
+                    return [4 /*yield*/, lightSequence(colors, 100)];
                 case 1:
                     _a.sent();
-                    genius.addEventListener('click', clickColor);
+                    score.textContent = '00';
+                    return [4 /*yield*/, flashScore()];
+                case 2:
+                    _a.sent();
+                    newRandomColor();
                     return [2 /*return*/];
             }
         });
     });
 }
 function lightColor(color) {
-    var _a;
+    var _a, _b;
     return __awaiter(this, void 0, void 0, function () {
-        var timeoutPromise;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        return __generator(this, function (_c) {
+            switch (_c.label) {
                 case 0:
                     (_a = document.querySelector(".".concat(color))) === null || _a === void 0 ? void 0 : _a.classList.toggle('selected');
-                    timeoutPromise = new Promise(function (res, rej) {
-                        setTimeout(function () {
-                            var _a;
-                            (_a = document.querySelector(".".concat(color))) === null || _a === void 0 ? void 0 : _a.classList.toggle('selected');
-                            res();
-                        }, 1000);
-                    });
-                    return [4 /*yield*/, timeoutPromise];
+                    sounds["".concat(color)].play();
+                    return [4 /*yield*/, delayPromise(300)];
                 case 1:
-                    _b.sent();
+                    _c.sent();
+                    (_b = document.querySelector(".".concat(color))) === null || _b === void 0 ? void 0 : _b.classList.toggle('selected');
                     return [2 /*return*/];
             }
         });
     });
 }
-function lightSequence(sequence) {
+function lightSequence(sequence, time) {
+    if (time === void 0) { time = _configurations.speed; }
     return __awaiter(this, void 0, void 0, function () {
-        var _i, sequence_1, color, delayPromise;
+        var _i, sequence_1, color;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _i = 0, sequence_1 = sequence;
                     _a.label = 1;
                 case 1:
-                    if (!(_i < sequence_1.length)) return [3 /*break*/, 6];
+                    if (!(_i < sequence_1.length)) return [3 /*break*/, 5];
                     color = sequence_1[_i];
-                    delayPromise = new Promise(function (res, rej) { setTimeout(res, 500); });
-                    return [4 /*yield*/, delayPromise];
+                    return [4 /*yield*/, delayPromise(time)];
                 case 2:
                     _a.sent();
                     return [4 /*yield*/, lightColor(color)];
                 case 3:
                     _a.sent();
-                    return [4 /*yield*/, delayPromise];
+                    _a.label = 4;
                 case 4:
-                    _a.sent();
-                    _a.label = 5;
-                case 5:
                     _i++;
                     return [3 /*break*/, 1];
-                case 6: return [2 /*return*/];
+                case 5: return [2 /*return*/];
             }
         });
     });
@@ -160,32 +198,50 @@ function clickColor(event) {
 }
 function checkSequence() {
     return __awaiter(this, void 0, void 0, function () {
-        var delayPromise;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    if (!(JSON.stringify(sequence) == JSON.stringify(clickedSequence))) return [3 /*break*/, 3];
-                    clickedSequence.length = 0;
-                    alert('Parabens, você acertou. Vamos para o próximo nivel!');
-                    newRandomColor();
-                    delayPromise = new Promise(function (res, rej) { setTimeout(res, 500); });
-                    return [4 /*yield*/, delayPromise];
+                    if (!(JSON.stringify(sequence) == JSON.stringify(clickedSequence))) return [3 /*break*/, 2];
+                    sounds.correct.play();
+                    score.textContent = sequence.length.toString().length == 1 ? "0".concat(sequence.length) : sequence.length.toString();
+                    return [4 /*yield*/, flashScore()];
                 case 1:
                     _a.sent();
-                    return [4 /*yield*/, lightSequence(sequence)];
-                case 2:
-                    _a.sent();
-                    genius.addEventListener('click', clickColor);
+                    clickedSequence.length = 0;
+                    newRandomColor();
                     return [2 /*return*/];
-                case 3:
-                    alert("Infelizmente voc\u00EA errou! Game Over! \n     Pontua\u00E7\u00E3o ".concat(sequence.length - 1));
+                case 2:
+                    sounds.wrong.play();
                     return [2 /*return*/, gameOver()];
             }
         });
     });
 }
 function gameOver() {
+    flashScore();
     clickedSequence.length = 0;
     sequence.length = 0;
     genius.removeEventListener('click', clickColor);
+}
+function gameOnOff(event) {
+    if (_configurations.gameOn) {
+        gameOver();
+        score.textContent = '';
+    }
+    else {
+        var score_1 = document.querySelector('.scoreboard h2');
+        score_1.textContent = '00';
+        flashScore();
+    }
+    var powerButton = event.target;
+    powerButton.classList.toggle('game-on');
+    powerButton.children[0].classList.toggle('game-on');
+    _configurations.gameOn = !_configurations.gameOn;
+}
+function setSpeed(event, speed) {
+    var speedButtons = document.querySelectorAll('.speed-button button');
+    speedButtons.forEach(function (btn) { return btn.classList.remove('active'); });
+    var clickedButton = event.target;
+    clickedButton.classList.add('active');
+    _configurations.speed = speed;
 }
