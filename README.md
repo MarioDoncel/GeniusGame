@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <div align="center">
  
-Project developed at the "<a href="https://web.dio.me/">Digital Innovation One</a> - Eduzz Fullstack Developer #2"  event. 
+Project developed at the "<a href="https://web.dio.me/">Digital Innovation One</a> - Eduzz Fullstack Developer #2"  bootcamp. 
 <div id="top"></div>
 </div><br>  
 
